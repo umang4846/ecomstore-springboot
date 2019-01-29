@@ -100,6 +100,14 @@ public class UserController {
             }
         }
 
+        for (int i=0;i<user.getAddresses().size();i++){
+            if (user.getAddresses().get(i).getId().equalsIgnoreCase(address.getId())){
+                user.getAddresses().remove(i);
+                break;
+            }
+
+        }
+
         if (user.getAddresses() != null) {
             List<Address> userAddress = user.getAddresses();
             userAddress.add(address);
@@ -107,6 +115,7 @@ public class UserController {
         } else {
             user.setAddresses(Collections.singletonList(address));
         }
+
         this.userRepository.save(user);
         return address;
     }
@@ -120,7 +129,7 @@ public class UserController {
             List<Cart> userCartList = user.getCartList();
             for (int i = 0; i < userCartList.size(); i++) {
                 if (userCartList.get(i).getProductCode().equals(cart.getProductCode())) {
-                    break;
+                    userCartList.remove(userCartList.get(i));
                 } else {
                     userCartList.add(cart);
                     user.setCartList(userCartList);
