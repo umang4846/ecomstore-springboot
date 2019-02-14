@@ -3,15 +3,15 @@ package com.appprocesssors.ecomstore.model;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
-import org.hibernate.validator.constraints.UniqueElements;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+@Document(collection = "user")
 public class Address {
 
-    @Id
-    private String id;
+
+    @SerializedName("_id")
+    @Expose
+    private String _id;
     @SerializedName("fullName")
     @Expose
     private String fullName;
@@ -40,12 +40,20 @@ public class Address {
     @Expose
     private Boolean isDefaultAddress;
 
-    public String getId() {
-        return id;
+    public String get_id() {
+        return _id;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void set_id(String _id) {
+        this._id = _id;
+    }
+
+    public Boolean getDefaultAddress() {
+        return isDefaultAddress;
+    }
+
+    public void setDefaultAddress(Boolean defaultAddress) {
+        isDefaultAddress = defaultAddress;
     }
 
     public String getFullName() {
@@ -111,6 +119,7 @@ public class Address {
     public void setAddressType(String addressType) {
         this.addressType = addressType;
     }
+
 
     public Boolean getIsDefaultAddress() {
         return isDefaultAddress;

@@ -75,7 +75,7 @@ public class UserController {
         List<Address> userAddresses = user.getAddresses();
         for (int i = 0; i < user.getAddresses().size(); i++) {
 
-            if (userAddresses.get(i).getId().equalsIgnoreCase(id)) {
+            if (userAddresses.get(i).get_id().equalsIgnoreCase(id)) {
                 userAddresses.remove(i);
             }
         }
@@ -86,9 +86,7 @@ public class UserController {
 
     @PostMapping("/{phone}/addaddress")
     public Address addNewAddress(@PathVariable("phone") String phone, @RequestBody Address address) {
-
         User user = this.userRepository.findByPhone(phone);
-
         if (address.getIsDefaultAddress()) {
             List<Address> userAddresses = user.getAddresses();
             if (userAddresses != null) {
@@ -99,15 +97,13 @@ public class UserController {
                 }
             }
         }
-
         for (int i=0;i<user.getAddresses().size();i++){
-            if (user.getAddresses().get(i).getId().equalsIgnoreCase(address.getId())){
-                user.getAddresses().remove(i);
+            if (user.getAddresses().get(i).get_id().equalsIgnoreCase(address.get_id())){
+                user.getAddresses().remove(user.getAddresses().get(i));
                 break;
             }
 
         }
-
         if (user.getAddresses() != null) {
             List<Address> userAddress = user.getAddresses();
             userAddress.add(address);

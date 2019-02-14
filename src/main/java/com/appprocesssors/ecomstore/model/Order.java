@@ -1,5 +1,7 @@
 package com.appprocesssors.ecomstore.model;
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -7,17 +9,38 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 public class Order {
 
-    @Id
+    @SerializedName("_id")
+    @Expose
     private String _id;
+    @SerializedName("productName")
+    @Expose
     private String productName;
+    @SerializedName("productPrice")
+    @Expose
     private String productPrice;
+    @SerializedName("shippingFee")
+    @Expose
     private String shippingFee;
+    @SerializedName("productQuanity")
+    @Expose
     private String productQuanity;
+    @SerializedName("totalAmount")
+    @Expose
     private String totalAmount;
+    @SerializedName("paymentMode")
+    @Expose
     private String paymentMode;
+    @SerializedName("address")
+    @Expose
+    private Address address;
+    @SerializedName("productDetails")
+    @Expose
     private ProductDetails productDetails;
-    private Address deliveryAddress;
+    @SerializedName("orderedAccountMobileNo")
+    @Expose
     private String orderedAccountMobileNo;
+    @SerializedName("orderDateTime")
+    @Expose
     private String orderDateTime;
 
 
@@ -28,7 +51,6 @@ public class Order {
     public void set_id(String _id) {
         this._id = _id;
     }
-
     public String getProductName() {
         return productName;
     }
@@ -85,14 +107,6 @@ public class Order {
         this.productDetails = productDetails;
     }
 
-    public Address getDeliveryAddress() {
-        return deliveryAddress;
-    }
-
-    public void setDeliveryAddress(Address deliveryAddress) {
-        this.deliveryAddress = deliveryAddress;
-    }
-
     public String getOrderedAccountMobileNo() {
         return orderedAccountMobileNo;
     }
@@ -107,5 +121,14 @@ public class Order {
 
     public void setOrderDateTime(String orderDateTime) {
         this.orderDateTime = orderDateTime;
+    }
+
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
     }
 }
